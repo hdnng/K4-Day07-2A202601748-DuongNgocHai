@@ -1,3 +1,10 @@
 doc_id,file_path,title,source_url,retrieved_at,document_version,license_or_permission
-k4-returns-policy,data/k4_ecommerce/returns-policy.md,Chính sách đổi trả,https://example.com/chinh-sach/doi-tra,2026-08-02,2026.1,example-template-replace-me
-k4-seller-listing,data/k4_ecommerce/seller-listing.md,Quy định đăng bán,https://example.com/nguoi-ban/dang-ban,2026-08-02,2026.1,example-template-replace-me
+decathlon-doi-tra,data/k4_ecommerce/decathlon-doi-tra.md,"""Chính sách đổi trả hàng | Decathlon Việt Nam""",https://www.decathlon.vn/s/chinh-sach-doi-tra-hang,2026-08-03,"""1.0""",public
+k4-shopee-return-refund,data/k4_ecommerce/k4-shopee-return-refund.md,Quy định chung về Trả hàng/Hoàn tiền của Shopee,https://help.shopee.vn/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng%2FHo%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng%2FHo%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee,2026-08-03,"""not-stated""",public
+k4-tgdd-shipping-policy,data/k4_ecommerce/k4-tgdd-shipping-policy.md,Chính sách giao hàng của Thế Giới Di Động,https://www.thegioididong.com/giao-hang,2026-08-03,"""2024-05-21""",public
+k4-tgdd-warranty-policy,data/k4_ecommerce/k4-tgdd-warranty-policy.md,Chính sách bảo hành sản phẩm của Thế Giới Di Động,https://www.thegioididong.com/chinh-sach-bao-hanh-san-pham,2026-08-03,"""2024-11-10""",public
+lazada-doi-tra,data/k4_ecommerce/lazada-doi-tra.md,"""Chính sách Trả hàng trực tiếp cho NBH LazMall (LazMall DRTM)""",https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028758&m_station=faq&questionId=1000149669,2026-08-03,"""1.0""",public
+shopee-bao-hanh,data/k4_ecommerce/shopee-bao-hanh.md,"""[Quy định] Chính sách bảo hành cho sản phẩm mua tại Shopee""",https://help.shopee.vn/portal/4/article/79046,2026-08-03,"""1.0""",public
+shopee-privacy-policy,data/k4_ecommerce/shopee-privacy-policy.md,Chính sách bảo mật Shopee,https://help.shopee.vn/portal/4/article/77244?previousPage=other+articles,2026-08-03,"""2026-06-11""",public
+shopee-shipping-policy,data/k4_ecommerce/shopee-shipping-policy.md,Chính sách vận chuyển Shopee,https://help.shopee.vn/portal/4/article/77250,2026-08-03,not-stated,public
+shopee-terms-of-service,data/k4_ecommerce/shopee-terms-of-service.md,Điều khoản dịch vụ Shopee,https://help.shopee.vn/portal/4/article/77243,2026-08-03,not-stated,public
