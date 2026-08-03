@@ -1,36 +1,38 @@
-# Báo Cáo Nhóm (Làm độc lập) — Lab 7: Embedding & Vector Store
+# Báo Cáo Nhóm — Lab 7: Embedding & Vector Store
 
-**Thành viên:** Dương Ngọc Hải (Kế thừa vai trò Nhóm)
+**Nhóm:** Hoinguoicaotuoi
+**Thành viên:** 
+1. Trần Duy Sơn
+2. Sai Hoài Nam
+3. Phạm Hoàng Nam
+4. Dương Ngọc Hải
+
 **Ngày:** 2026-08-03
 
-> **Nộp 1 bản / nhóm.** Phần cá nhân (hướng tiếp cận, kết quả riêng, dự đoán…) được nộp trong `REPORT_CANHAN.md`. Do làm độc lập, báo cáo này đại diện cho toàn bộ hệ thống đánh giá bằng 1 chiến lược duy nhất được chọn.
+> **Nộp 1 bản / nhóm.** Phần cá nhân (hướng tiếp cận, kết quả riêng, dự đoán…) mỗi thành viên nộp riêng trong `REPORT_CANHAN.md`. Chi tiết thang điểm: `docs/SCORING.md`.
 
 **Tổng điểm phần nhóm: 40** = Lựa chọn tài liệu (10) + Thiết kế chiến lược (15) + Chất lượng truy xuất (10) + Thuyết trình (5).
 
 ---
 
-## 1. Lựa chọn tài liệu (Document Set Quality) (10 điểm)
+## 1. Lựa chọn tài liệu (Document Set Quality) — Nhóm (10 điểm)
 
 ### Phạm vi bộ tài liệu (Scope)
 
 **Chủ đề (cố định theo lớp K4):** Chính sách thương mại điện tử / hỗ trợ khách hàng (thanh toán, đổi trả, giao hàng, quyền riêng tư, điều kiện người bán…).
 
-**Phạm vi cụ thể tập trung:**
-> *Tập trung vào các chính sách đổi trả, bảo hành, quyền riêng tư và chính sách vận chuyển của các nền tảng thương mại điện tử lớn (Shopee, Lazada) và chuỗi bán lẻ (Thế Giới Di Động, Decathlon).*
+**Phạm vi cụ thể nhóm tập trung:**
+> *Chính sách đổi trả, hoàn tiền, vận chuyển và bảo hành của các sàn thương mại điện tử (Shopee, Lazada, Thế Giới Di Động, Decathlon).*
 
 ### Danh sách tài liệu (Data Inventory)
 
-| # | Tên tài liệu | Nguồn (Source URL) | Ngày lấy / Phiên bản | Metadata đã gán (customer_role) |
-|---|--------------|------------|--------------------|-----------------|
-| 1 | `decathlon-doi-tra.md` | www.decathlon.vn | 2026-08-03 / v1.0 | both |
-| 2 | `k4-shopee-return-refund.md` | help.shopee.vn | 2026-08-03 / not-stated | buyer |
-| 3 | `k4-tgdd-shipping-policy.md` | thegioididong.com | 2026-08-03 / 2024-05-21 | both |
-| 4 | `k4-tgdd-warranty-policy.md` | thegioididong.com | 2026-08-03 / 2024-11-10 | both |
-| 5 | `lazada-doi-tra.md` | sellercenter.lazada.vn | 2026-08-03 / v1.0 | seller |
-| 6 | `shopee-bao-hanh.md` | help.shopee.vn | 2026-08-03 / v1.0 | both |
-| 7 | `shopee-privacy-policy.md` | help.shopee.vn | 2026-08-03 / 2026-06-11 | both |
-| 8 | `shopee-shipping-policy.md` | help.shopee.vn | 2026-08-03 / not-stated | buyer |
-| 9 | `shopee-terms-of-service.md` | help.shopee.vn | 2026-08-03 / not-stated | buyer |
+| # | Tên tài liệu | Nguồn (Source URL) | Ngày lấy / Phiên bản | Số ký tự | Metadata đã gán |
+|---|--------------|------------|--------------------|----------|-----------------|
+| 1 | Quy định chung về Trả hàng/Hoàn tiền của Shopee | [Shopee Help](https://help.shopee.vn/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng%2FHo%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng%2FHo%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee) | 2026-08-03 / not-stated | ~5,000 | `platform`, `category` |
+| 2 | Chính sách bảo hành sản phẩm của Thế Giới Di Động | [TGDD](https://www.thegioididong.com/chinh-sach-bao-hanh-san-pham) | 2026-08-03 / 2024-11-10 | ~8,000 | `platform`, `category` |
+| 3 | Chính sách đổi trả hàng \| Decathlon Việt Nam | [Decathlon](https://www.decathlon.vn/s/chinh-sach-doi-tra-hang) | 2026-08-03 / 1.0 | ~4,000 | `platform`, `category` |
+| 4 | Chính sách Trả hàng trực tiếp cho NBH LazMall | [Lazada](https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028758&m_station=faq&questionId=1000149669) | 2026-08-03 / 1.0 | ~6,000 | `platform`, `customer_role`, `category` |
+| 5 | Chính sách giao hàng của Thế Giới Di Động | [TGDD](https://www.thegioididong.com/giao-hang) | 2026-08-03 / 2024-05-21 | ~3,000 | `platform`, `category` |
 
 **Danh sách kiểm tra quản trị dữ liệu (Data governance checklist):**
 - [x] Tập tài liệu (Corpus) chỉ chứa nguồn công khai/được phép dùng và không chứa dữ liệu cá nhân, thông tin đăng nhập hoặc tài liệu nội bộ.
@@ -40,70 +42,118 @@
 
 | Trường metadata | Kiểu | Ví dụ giá trị | Tại sao hữu ích cho truy xuất (retrieval)? |
 |----------------|------|---------------|-------------------------------|
-| `category` | string | `returns`, `warranty`, `shipping` | Cho phép Agent lọc trước (pre-filter) khi có câu hỏi chuyên biệt về một lĩnh vực (ví dụ: chỉ tìm trong mảng 'vận chuyển' thay vì tìm trong toàn bộ kho). |
-| `customer_role` | string | `buyer`, `seller`, `both` | Giúp phân tách rõ ràng chính sách dành cho người mua và người bán, tránh việc lấy nhầm quy định của NBH để trả lời cho Khách hàng. |
+| `platform` | str | `shopee`, `tgdd` | Lọc kết quả theo nền tảng, tránh nhầm lẫn chính sách giữa các sàn. |
+| `category` | str | `return`, `shipping` | Thu hẹp phạm vi tìm kiếm theo chủ đề như vận chuyển, đổi trả hoặc bảo hành. |
+| `customer_role` | str | `buyer`, `seller` | Lọc thông tin đặc thù dành cho người mua hoặc người bán (ví dụ: Lazada cho nhà bán hàng LazMall). |
 
 ---
 
-## 2. Thiết kế chiến lược (Strategy Design) (15 điểm)
+## 2. Thiết kế chiến lược (Strategy Design) — Nhóm (15 điểm)
+
+> Mỗi thành viên thử **một chiến lược khác nhau** trên cùng bộ tài liệu; nhóm tổng hợp và so sánh ở đây.
 
 ### Phân tích đường cơ sở (Baseline Analysis)
 
-*(Chạy bằng script `ChunkingStrategyComparator().compare()` trên 2 file: lazada-doi-tra.md và decathlon-doi-tra.md để đánh giá tổng quan cả 3 cơ chế)*
+Chạy so sánh các chiến lược Chunking trên tài liệu mẫu để đánh giá tổng quan (bao gồm cả thuật toán tuỳ chỉnh):
 
-| Tài liệu | Chiến lược (Strategy) | Số lượng Chunk | Độ dài trung bình | Giữ được ngữ cảnh không? |
-|-----------|----------|-------------|------------|-------------------|
-| decathlon & lazada | FixedSizeChunker (`fixed_size`) | 71 | 198.44 ký tự | Tạm ổn, nhưng thỉnh thoảng cắt ngang giữa một câu mô tả điều kiện đổi trả quan trọng. |
-| decathlon & lazada | SentenceChunker (`by_sentences`) | 28 | 451.46 ký tự | Giữ được trọn vẹn ngữ nghĩa của từng câu đơn lẻ nhưng thiếu tính liên kết ngữ cảnh trước/sau (do ghép nhiều câu lại). |
-| decathlon & lazada | RecursiveChunker (`recursive`) | 96 | 130.62 ký tự | Tốt nhất. Giữ được toàn bộ đoạn văn bản nhỏ hoặc cấu trúc gạch đầu dòng Markdown một cách chặt chẽ. |
+| Thành viên | Chiến lược (Strategy) | Số lượng Chunk | Độ dài trung bình | Giữ được ngữ cảnh không? |
+|:---|:---|:---:|:---:|:---|
+| **Phạm Hoàng Nam** | `FixedSizeChunker(300, overlap=50)` | 71 | 198.44 | Ngữ cảnh dễ bị cắt đứt giữa câu hoặc ý quan trọng. |
+| **Trần Duy Sơn** | `SentenceChunker(2 câu/chunk)` | 28 | 451.46 | Giữ ngữ cảnh câu tốt, nhưng số câu/chunk không đồng đều. |
+| **Dương Ngọc Hải** | `RecursiveChunker(chunk_size=150)` | 96 | 130.62 | Cân bằng hơn, tôn trọng dấu đoạn văn/xuống dòng nhưng chunk khá ngắn. |
+| **Sai Hoài Nam** | `HeadingChunker(chunk_size=500)` | 80 | 361.27 | Giữ cấu trúc phân cấp xuất sắc nhờ tiêu đề (Heading), ngữ cảnh cực tốt. |
 
-### Lựa Chọn Chiến Lược Thực Tế (Dương Ngọc Hải)
+### Chiến lược của từng thành viên
 
-Dựa vào phân tích Baseline ở trên, tôi đã quyết định chọn **RecursiveChunker** làm chiến lược truy xuất chính (và duy nhất) cho toàn bộ hệ thống đánh giá.
+**Thành viên 1 — Trần Duy Sơn**
+- **Loại chiến lược:** `SentenceChunker(max_sentences_per_chunk=2)`
+- **Mô tả & lý do chọn cho chủ đề này:** Tách các ý chi tiết cụ thể để không bị nhiễu. Dùng tối đa 2 câu/chunk giúp các điều kiện (ví dụ: điều kiện Autobypass và thời hạn 30 ngày) nằm chung trong một chunk rõ ràng để dễ truy xuất.
 
-| Thành viên | Chiến lược (Strategy) | Điểm truy xuất dự kiến | Điểm mạnh | Điểm yếu |
+**Thành viên 2 — Sai Hoài Nam**
+- **Loại chiến lược:** Custom `HeadingChunker(chunk_size=500)`
+- **Mô tả & lý do chọn cho chủ đề này:** Dựa vào Heading Markdown (H1-H6) để duy trì cấu trúc hierarchy của tài liệu chính sách. Việc lặp lại `heading_path` giúp embedding luôn biết ngữ cảnh của các câu ngắn (như “trừ 10%” hoặc “50.000đ”).
+- **Code snippet (nếu custom):**
+```python
+# Đại diện logic:
+# 1. Nhận diện Markdown heading từ H1 đến H6 và duy trì hierarchy.
+# 2. Gán heading_path vào đầu mỗi chunk để luôn giữ ngữ cảnh tổng.
+# 3. Phân chia tiếp theo paragraph, dòng, câu, và từ; hard split chỉ dùng cuối cùng.
+```
+
+**Thành viên 3 — Phạm Hoàng Nam**
+- **Loại chiến lược:** `FixedSizeChunker(chunk_size=300, overlap=50)`
+- **Mô tả & lý do chọn cho chủ đề này:** Sử dụng chunking kích thước cố định với overlap vừa phải để bảo đảm giữ trọn vẹn được một ý/chính sách, đặc biệt khi các thông số điều kiện thay đổi rất nhanh trên cùng một đoạn. Kích thước 300 đủ để không quá ngắn và overlap 50 đủ để giữ ngữ cảnh.
+
+**Thành viên 4 — Dương Ngọc Hải**
+- **Loại chiến lược:** `RecursiveChunker(chunk_size=150)`
+- **Mô tả & lý do chọn cho chủ đề này:** Chia nhỏ theo từng đoạn văn/chấm câu để tìm thông tin chi tiết với granularity cao. Chunk ngắn giúp model dễ focus vào các con số điều kiện như "10%", "30 ngày" mà không bị pha loãng bởi văn bản xung quanh.
+
+### So Sánh Giữa Các Thành Viên
+
+| Thành viên | Chiến lược (Strategy) | Điểm truy xuất (/10) | Điểm mạnh | Điểm yếu |
 |-----------|----------|----------------------|-----------|----------|
-| Dương Ngọc Hải | RecursiveChunker (150) | 9/10 | Tối ưu cho file Markdown. Luôn cố giữ các đoạn văn `\n\n` liền mạch với nhau, bảo toàn trọn vẹn ngữ cảnh của các điều kiện đi kèm. | Triển khai thuật toán phức tạp hơn. Một số chunk có thể dài hơn 150 ký tự nếu đoạn văn không có dấu câu ngắt dòng. |
+| Trần Duy Sơn | `SentenceChunker(2 câu/chunk)` | 10/10 | Rất linh hoạt, bắt các mốc thời gian và điều kiện rất chuẩn do ý không bị gộp chung. | Có thể bị mất context tổng quát (chủ đề chính sách). |
+| Sai Hoài Nam | `HeadingChunker(chunk_size=500)` | 9/10 | Giữ ngữ cảnh hierarchy rất tốt (ví dụ: tiền phí thuộc phần nào). | Đòi hỏi xử lý custom phức tạp, chunk size lớn đôi khi gây nhiễu từ khóa. |
+| Phạm Hoàng Nam | `FixedSizeChunker(300, overlap=50)` | 9/10 | Dễ triển khai, kết quả khá ổn định cho các thông tin rải rác. | Dễ cắt đứt ngữ nghĩa ở ranh giới 2 chunk mặc dù có overlap. |
+| Dương Ngọc Hải | `RecursiveChunker(chunk_size=150)` | 9/10 | Bắt chi tiết nhạy bén (thông tin số liệu, tỷ lệ phần trăm). Code đơn giản. | Ngữ cảnh (vd: nền tảng nào) dễ bị mất vì chunk quá nhỏ. |
 
-**Tại sao chọn chiến lược này?**
-> *Chiến lược **Recursive Chunker** là tối ưu nhất cho văn bản chính sách thương mại điện tử (thường dùng định dạng Markdown với nhiều list điều kiện). Nó tuân theo cấu trúc đoạn văn tự nhiên, giúp giữ nguyên vẹn một cụm "điều kiện đổi trả" liền mạch, cung cấp đủ bối cảnh (Context) để LLM sinh ra câu trả lời chuẩn xác.*
+**Chiến lược nào tốt nhất cho chủ đề này? Tại sao?**
+> *Mặc dù `SentenceChunker` của Trần Duy Sơn đạt điểm cao nhất trên bộ câu hỏi (10/10), nhưng về mặt kiến trúc lâu dài cho tài liệu chính sách, chiến lược `HeadingChunker` kết hợp Metadata Filtering của Sai Hoài Nam là tốt và toàn diện nhất. Lý do là chính sách thương mại điện tử thường được trình bày dạng phân nhánh (Heading). Việc lặp lại `heading_path` giúp các thông số như 50.000đ ở section "Phí Vận Chuyển TGDD" không bị tách rời ý nghĩa bối cảnh tổng quát.*
 
 ---
 
-## 3. Câu hỏi đánh giá & Chất lượng truy xuất (Retrieval Quality) (10 điểm)
+## 3. Câu hỏi đánh giá & Chất lượng truy xuất (Retrieval Quality) — Nhóm (10 điểm)
 
-### Câu hỏi đánh giá & Câu trả lời chuẩn
+### Câu hỏi đánh giá & Câu trả lời chuẩn (nhóm thống nhất)
 
 | # | Câu hỏi (Query) | Câu trả lời chuẩn (Gold Answer) | Chunk nào chứa thông tin? |
 |---|-------|-------------------------------|--------------------------|
-| 1 | Theo quy định Shopee, mã giảm giá có được hoàn lại nếu trả hàng 1 phần không? | Không. Mã giảm giá chỉ được hoàn lại khi khiếu nại trả hàng toàn bộ đơn hàng. | `k4-shopee-return-refund.md` |
-| 2 | Tại TGDD, mua điện thoại muốn hoàn tiền tháng thứ 2 tính phí ntn? | Trong tháng thứ 2 (đến tháng 12), phí hoàn tiền bị trừ 10%/tháng. | `k4-tgdd-warranty-policy.md` |
-| 3 | Sản phẩm Garmin mua tại Decathlon có được đổi trả ở Decathlon không? | Không, sản phẩm Garmin sẽ do đơn vị sản xuất trực tiếp bảo hành. | `decathlon-doi-tra.md` |
-| 4 | Trên Lazada, khi nào tính năng Autobypass tự động được kích hoạt? | Nếu NBH không phản hồi trong vòng 30 ngày sau quy trình kiểm tra chất lượng (QC). | `lazada-doi-tra.md` |
-| 5 | Mua tivi 4 triệu tại TGDD cách nhà 15km thì phí vận chuyển bao nhiêu? | Dưới 5 triệu, phí cơ bản 50.000đ + (5km x 5.000đ) = 75.000đ. | `k4-tgdd-shipping-policy.md` |
+| 1 | Mã giảm giá có được hoàn lại nếu tôi khiếu nại trả hàng/hoàn tiền một phần đơn hàng Shopee không? | Không, chỉ được hoàn lại khi trả toàn bộ đơn hàng (thuộc diện không nhận hàng hoặc gói hàng rỗng). | `k4-shopee-return-refund::chunk_0` / Heading `Điều khoản hoàn tiền` |
+| 2 | Phí hoàn tiền điện thoại TGDD trong tháng thứ 2 tính thế nào? | Tháng 2–12 trừ 10%/tháng; (thiếu hộp trừ 2%, thiếu phụ kiện trừ tối đa 5%). | `k4-tgdd-warranty-policy::chunk_2` / `chunk_3`, `chunk_5` |
+| 3 | Sản phẩm Garmin có áp dụng đổi trả tại Decathlon không? | Không, sản phẩm Garmin do nhà sản xuất (hãng) chịu trách nhiệm hậu mãi, không thuộc chính sách đổi trả của Decathlon. | `decathlon-doi-tra::chunk_21`, `chunk_27` / Heading `1. Chính sách đổi, trả hàng` |
+| 4 | (Lazada LazMall) Khi nào tính năng Autobypass tự kích hoạt? | Kích hoạt nếu NBH không phản hồi sau khi hoàn tất QC trong vòng 30 ngày. | `lazada-doi-tra::chunk_12`, `chunk_14` / Heading `2. Cách xử lý đơn hàng yêu cầu đổi trả` |
+| 5 | Phí giao tivi cần lắp đặt 4 triệu đồng, cách 15km tại TGDD là bao nhiêu? | 50.000đ cho 10km đầu và 5.000đ/km cho 5km tiếp theo, tổng là 75.000đ. | `k4-tgdd-shipping-policy::chunk_2`, `chunk_5` / Heading `Phí vận chuyển` |
 
-### Tổng hợp chất lượng truy xuất (RecursiveChunker)
+### Tổng hợp chất lượng truy xuất của nhóm
 
-> *Chạy đánh giá bằng mô hình thực tế `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` kết hợp `RecursiveChunker`.*
+> Cách chấm (theo `docs/SCORING.md`): **2 điểm/câu** — top-3 chứa chunk liên quan + agent trả lời đúng (2), có liên quan nhưng thiếu/không ở top-1 (1), không có trong top-3 (0).
 
-| # | Câu hỏi | Có chunk liên quan trong top-3 không? | Phân tích lỗi / Đánh giá (Failure Analysis) |
-|---|---------|--------------------------------------|---------------------------------------------|
-| 1 | Câu 1 | Có (Top 1) | Điểm Score 0.7049, bắt đúng chunk nói về quy định hoàn lại mã giảm giá của Shopee nhờ bảo toàn được ngữ cảnh. |
-| 2 | Câu 2 | Có (Top 3) | Lấy chính xác được dòng phần trăm phí (`- Tháng thứ 2-12: tính phí 10%...`). Do có nhiều đoạn nói về đổi trả nên đoạn này tụt xuống top 3. |
-| 3 | Câu 3 | Có (Top 1) | Giữ được trọn vẹn ngữ cảnh đoạn quy định ngoại lệ dành riêng cho Garmin, không bị tách chữ Garmin ra khỏi quy định. |
-| 4 | Câu 4 | Có (Top 1) | Tự động ghép đúng từ "Autobypass" vào cùng chunk có câu điều kiện 30 ngày. Truy xuất xuất sắc. |
-| 5 | Câu 5 | Có (Top 1) | **Phải dùng Filter**. Nếu không có Filter, truy xuất bị nhiễu do điểm Score các văn bản đổi trả cũng khá cao. |
+| # | Câu hỏi | Chiến lược tốt nhất cho câu này | Có chunk liên quan trong top-3? | Ghi chú |
+|---|---------|-------------------------------|-------------------------------|---------|
+| 1 | Trả mã giảm giá Shopee | Tất cả | Có (Top 1-2) | Khớp chính xác trên mọi chiến lược. |
+| 2 | Phí hoàn tiền TGDD tháng 2 | `HeadingChunker` / `SentenceChunker` | Có | Fixed/Recursive mất điểm vì thiếu chi tiết phụ (phí mất hộp/phụ kiện). |
+| 3 | Đổi trả Garmin Decathlon | Tất cả | Có (Top 1) | Tất cả đều truy xuất chính xác thông tin. |
+| 4 | Autobypass Lazada | `RecursiveChunker` / `SentenceChunker` | Có | Chunk ngắn giúp bắt chính xác "30 ngày". Bắt buộc dùng filter `customer_role=seller`. |
+| 5 | Phí ship Tivi TGDD 15km | `HeadingChunker(500)` + metadata | Có (Top 1) | `HeadingChunker` giúp agent suy luận 75k tốt nhất nhờ cung cấp đủ context từ đề mục "Phí vận chuyển". |
 
 **Lọc bằng metadata có giúp ích không? Ở câu hỏi nào?**
-> *Việc lọc (Metadata Filter) hỗ trợ rất lớn. Ở Câu 5 (hỏi về phí vận chuyển), nếu áp dụng Metadata Filter `{"category": "shipping"}`, hệ thống sẽ loại trừ hoàn toàn các tài liệu nói về bảo hành hoặc đổi trả. Điều này giúp loại bỏ rác (noise) ngay từ vòng gửi xe, tăng độ chính xác truy xuất lên 100% trong Top 1.*
+> *Rất hữu ích, đặc biệt cho câu 2, 4 và 5. Câu 4 bắt buộc dùng `customer_role=seller` để không nhầm với quy định của người mua. Câu 5 dùng `category=shipping` để loại bỏ các chunk nói về "tiền phí" liên quan đến bảo hành/đổi trả (giúp vượt qua nhiễu giữa "phí vận chuyển" và "phí hoàn tiền").*
 
 ---
 
-## 4. Thuyết trình (Demo) & Bài học (5 điểm)
+## 4. Thuyết trình (Demo) & Bài học nhóm — Nhóm (5 điểm)
 
-**Những phân tích (insights) hay nhất đã rút ra:**
-> - Mô hình nhúng (Embedder) tiếng Việt đa ngữ là yếu tố quyết định; dùng Mock Embedder sẽ dẫn đến kết quả sai lệch hoàn toàn về mặt ngữ nghĩa (Truy xuất ngẫu nhiên).
-> - Chiến lược `RecursiveChunker` thực sự ưu việt khi làm việc với tài liệu Markdown vì nó biết tôn trọng cấu trúc câu, giữ được các gạch đầu dòng (bullets) dính liền với ý chính của chúng.
+**Những phân tích (insights) hay nhất nhóm sẽ trình bày:**
+> 1. Thiết kế Chunking theo cấu trúc tài liệu (Heading) thường giữ bối cảnh tốt nhất cho các tài liệu pháp lý/chính sách.
+> 2. Kích thước chunk nhỏ (vd: Recursive 150 hoặc Sentence) giúp bắt chi tiết cực tốt (số liệu 10%, 30 ngày) nhưng lại đánh rơi bối cảnh (nền tảng nào, chính sách nào).
+> 3. Các thuật ngữ "phí", "hoàn tiền", "tháng" thường gây nhiễu chéo (ví dụ: truy vấn phí của TGDD lại trả về chunk của Shopee do cosine similarity cao). Metadata Filtering là giải pháp cốt lõi để loại bỏ nhiễu này.
 
-**Nếu làm lại, sẽ thay đổi gì trong chiến lược dữ liệu (data strategy)?**
-> - Sẽ phân tách Metadata sâu hơn xuống cấp độ đoạn (Paragraph-level Metadata) thay vì chỉ gán cho toàn bộ tài liệu (Document-level) để bộ lọc phát huy sức mạnh tối đa hơn nữa đối với các file dài có chứa nhiều chủ đề con.
+**Bài học rút ra khi so sánh trong nhóm:**
+> *Mỗi chiến lược có một thế mạnh riêng biệt. Cùng một tài liệu, chiến lược Sentence/Recursive sẽ bắt các con số keyword cực nhạy bén, nhưng chiến lược Heading lại cung cấp bối cảnh toàn diện giúp LLM không bị ảo giác ngữ cảnh. Không có chiến lược nào hoàn hảo tuyệt đối.*
+
+**Nếu làm lại, nhóm sẽ thay đổi gì trong chiến lược dữ liệu (data strategy)?**
+> *Nhóm sẽ triển khai một thuật toán kết hợp: HeadingChunker để giữ cấu trúc, nhưng khi chia nhỏ phần bên trong sẽ áp dụng Recursive/SentenceChunker linh hoạt. Ngoài ra, cần làm mịn bộ Metadata Filtering hơn nữa (thêm `applicable_products`, `conditions`).*
+
+---
+
+## Tự Đánh Giá (Phần Nhóm)
+
+Đánh giá dựa trên sự công tâm, khách quan và kết quả thực tế của cả 4 thành viên:
+
+| Tiêu chí | Điểm tự đánh giá |
+|----------|-------------------|
+| Lựa chọn tài liệu (Document Set Quality) | 9 / 10 |
+| Thiết kế chiến lược (Strategy Design) | 14 / 15 |
+| Chất lượng truy xuất (Retrieval Quality) | 9 / 10 |
+| Thuyết trình (Demo) | 5 / 5 |
+| **Tổng phần nhóm** | **37 / 40** |
